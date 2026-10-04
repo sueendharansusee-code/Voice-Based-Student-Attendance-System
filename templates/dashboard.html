@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Voice Attendance System{% endblock %}
+{% block page_heading %}Dashboard Overview{% endblock %}
+{% block page_subheading %}Live metrics & today's speech recognition attendance activity{% endblock %}
+
+{% block content %}
+
+<!-- High Level Metrics Grid -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon total">🎓</div>
+        <div class="stat-info">
+            <div class="stat-value" id="stat-total-students">0</div>
+            <div class="stat-label">Total Students</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon present">✅</div>
+        <div class="stat-info">
+            <div class="stat-value" id="stat-present-today">0</div>
+            <div class="stat-label">Present Today</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon absent">❌</div>
+        <div class="stat-info">
+            <div class="stat-value" id="stat-absent-today">0</div>
+            <div class="stat-label">Absent Today</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon rate">📈</div>
+        <div class="stat-info">
+            <div class="stat-value" id="stat-attendance-rate">0%</div>
+            <div class="stat-label">Attendance Rate</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Voice Kiosk Banner -->
+<div class="voice-kiosk-container">
+    <div class="kiosk-header">
+        <h2>🎙️ Quick Voice Attendance</h2>
+        <p>Tap the microphone icon and state your registered <strong>Student Name</strong> or <strong>Student ID</strong></p>
+    </div>
+
+    <div class="mic-button-wrapper" id="mic-button-wrapper">
+        <div class="mic-pulse-ring"></div>
+        <button class="mic-btn" id="mic-btn" title="Click to start speech recognition">
+            🎙️
+        </button>
+    </div>
+
+    <div class="audio-waves" id="audio-waves">
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+    </div>
+
+    <div class="speech-status-box">
+        <p id="speech-status-text">Click microphone to speak...</p>
+        <div class="speech-transcript" id="speech-transcript-display"></div>
+    </div>
+
+    <!-- Manual Write-in Fallback Input -->
+    <form class="manual-fallback-input" id="manual-fallback-form">
+        <input type="text" id="manual-speech-input" placeholder="Or type Student Name / ID here..." autocomplete="off">
+        <button type="submit">Submit Voice Command</button>
+    </form>
+</div>
+
+<!-- Feedback Card -->
+<div class="match-result-card" id="match-result-card"></div>
+
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+    <!-- Today's Attendance Table -->
+    <div class="panel-card">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3>Today's Attendance Stream</h3>
+            </div>
+            <a href="{{ url_for('voice_attendance') }}" class="btn-secondary" style="font-size: 0.85rem;">
+                Full Screen Kiosk ↗
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Time Recorded</th>
+                        <th>Status & Method</th>
+                    </tr>
+                </thead>
+                <tbody id="today-attendance-tbody">
+                    <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading today's attendance...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Department Progress Breakdown -->
+    <div class="panel-card">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3>Department Summary</h3>
+            </div>
+        </div>
+        <div id="dept-breakdown-list">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Loading department metrics...</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

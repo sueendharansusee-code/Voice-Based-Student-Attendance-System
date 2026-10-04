@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Voice Kiosk - Voice Attendance System{% endblock %}
+{% block page_heading %}Voice Attendance Terminal{% endblock %}
+{% block page_subheading %}Hands-free speech recognition attendance terminal for students{% endblock %}
+
+{% block content %}
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <!-- Large Voice Kiosk Terminal -->
+    <div class="voice-kiosk-container" style="padding: 4rem 2rem;">
+        <div class="kiosk-header">
+            <h2 style="font-size: 2.5rem;">🎙️ Voice Attendance Kiosk</h2>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0.5rem auto 2.5rem;">
+                Click the microphone, state your registered <strong>Name</strong> or <strong>Student ID</strong>.
+                The system converts speech to text and instantly marks your attendance.
+            </p>
+        </div>
+
+        <div class="mic-button-wrapper" id="mic-button-wrapper" style="width: 160px; height: 160px;">
+            <div class="mic-pulse-ring" style="width: 160px; height: 160px;"></div>
+            <button class="mic-btn" id="mic-btn" style="width: 140px; height: 140px; font-size: 3.5rem;">
+                🎙️
+            </button>
+        </div>
+
+        <div class="audio-waves" id="audio-waves" style="margin-bottom: 2rem;">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+
+        <div class="speech-status-box" style="padding: 1.5rem; max-width: 600px;">
+            <p id="speech-status-text" style="font-size: 1.1rem;">Click microphone to speak...</p>
+            <div class="speech-transcript" id="speech-transcript-display" style="font-size: 1.5rem;"></div>
+        </div>
+
+        <!-- Manual Fallback -->
+        <form class="manual-fallback-input" id="manual-fallback-form" style="max-width: 500px;">
+            <input type="text" id="manual-speech-input" placeholder="Manual Backup: Type Name or Student ID..." autocomplete="off">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Match Result Card -->
+    <div class="match-result-card" id="match-result-card"></div>
+
+    <!-- Instructions Banner -->
+    <div class="panel-card" style="margin-top: 2rem;">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3>💡 Voice Recognition Tips</h3>
+            </div>
+        </div>
+        <ul style="line-height: 1.8; color: var(--text-muted); font-size: 0.95rem; padding-left: 1.25rem;">
+            <li>Speak clearly into your microphone at a standard volume.</li>
+            <li>You can state your full name (e.g., <em>"Alice Smith"</em>) or student ID (e.g., <em>"STU101"</em> or <em>"101"</em>).</li>
+            <li>Natural spoken phrases like <em>"My name is Bob Johnson"</em> or <em>"Present STU102"</em> are automatically recognized.</li>
+            <li>Duplicate entries for the same student on the same day are automatically blocked to prevent double-marking.</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

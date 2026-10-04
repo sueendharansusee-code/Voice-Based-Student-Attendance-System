@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.sqlite3
+# Keep database directory structure, ignore local DB file if created dynamically
+# database/attendance.db
+.DS_Store
+.env

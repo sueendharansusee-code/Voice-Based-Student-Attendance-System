@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Attendance History - Voice Attendance System{% endblock %}
+{% block page_heading %}Attendance History & Logs{% endblock %}
+{% block page_subheading %}Search past attendance records, filter by date/department, and export CSV reports{% endblock %}
+
+{% block content %}
+
+<div class="panel-card">
+    <div class="panel-header">
+        <div class="panel-title">
+            <h3>Attendance Records</h3>
+        </div>
+        <div class="filter-bar">
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <label style="font-size: 0.85rem; font-weight: 600;">From:</label>
+                <input type="date" id="hist-start-date" class="form-control" style="width: 140px;">
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <label style="font-size: 0.85rem; font-weight: 600;">To:</label>
+                <input type="date" id="hist-end-date" class="form-control" style="width: 140px;">
+            </div>
+            <select id="hist-dept-filter" class="form-control" style="width: 170px;">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Biotechnology">Biotechnology</option>
+            </select>
+            <input type="text" id="hist-search-input" class="form-control" placeholder="🔍 Search student..." style="width: 170px;">
+            <button id="btn-export-csv" class="btn-success">
+                📥 Export CSV
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Department</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status & Method</th>
+                </tr>
+            </thead>
+            <tbody id="history-table-tbody">
+                <tr><td colspan="7" style="text-align:center; padding: 2rem;">Loading attendance logs...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Students - Voice Attendance System{% endblock %}
+{% block page_heading %}Student Directory & Registration{% endblock %}
+{% block page_subheading %}Register new students and search existing student profiles{% endblock %}
+
+{% block content %}
+
+<div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem;">
+    <!-- Student Registration Card -->
+    <div class="panel-card">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3>Register New Student</h3>
+            </div>
+        </div>
+        <form id="student-register-form">
+            <div class="form-group">
+                <label for="reg-student-id">Student ID / Roll No. *</label>
+                <input type="text" id="reg-student-id" class="form-control" placeholder="e.g. STU111 or 111" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-student-name">Full Name *</label>
+                <input type="text" id="reg-student-name" class="form-control" placeholder="e.g. Sarah Connor" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-student-dept">Department *</label>
+                <select id="reg-student-dept" class="form-control" required>
+                    <option value="">Select Department...</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                    <option value="Information Technology">Information Technology</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">
+                ➕ Register Student
+            </button>
+        </form>
+    </div>
+
+    <!-- Student Directory Table -->
+    <div class="panel-card">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h3>Student Directory</h3>
+            </div>
+            <div class="filter-bar">
+                <input type="text" id="student-search-input" class="form-control" placeholder="🔍 Search name or ID..." style="width: 200px;">
+                <select id="student-dept-filter" class="form-control" style="width: 180px;">
+                    <option value="">All Departments</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Biotechnology">Biotechnology</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Department</th>
+                        <th>Date Registered</th>
+                    </tr>
+                </thead>
+                <tbody id="student-directory-tbody">
+                    <tr><td colspan="5" style="text-align:center; padding: 2rem;">Loading student directory...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

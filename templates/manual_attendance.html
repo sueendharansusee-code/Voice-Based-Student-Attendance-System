@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Manual Attendance - Voice Attendance System{% endblock %}
+{% block page_heading %}Manual Attendance Backup{% endblock %}
+{% block page_subheading %}Manually mark or override student attendance status as a backup{% endblock %}
+
+{% block content %}
+
+<div class="panel-card">
+    <div class="panel-header">
+        <div class="panel-title">
+            <h3>Manual Attendance Checklist</h3>
+        </div>
+        <div class="filter-bar">
+            <label style="font-size: 0.9rem; font-weight: 600;">Select Date:</label>
+            <input type="date" id="manual-date-picker" class="form-control" style="width: 170px;">
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Department</th>
+                    <th>Action Toggle</th>
+                </tr>
+            </thead>
+            <tbody id="manual-attendance-tbody">
+                <tr><td colspan="5" style="text-align:center; padding: 2rem;">Loading student attendance checklist...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
